@@ -6,5 +6,8 @@ class Task < ApplicationRecord
   # after_update_commit -> { broadcast_replace_later_to "tasks" }
   # after_destroy_commit -> { broadcast_remove_to "tasks" }
   broadcasts_to ->(task) { [task.company, "tasks"] }, inserts_by: :prepend
+
   belongs_to :company
+  has_many :line_item_dates, dependent: :destroy
+
 end

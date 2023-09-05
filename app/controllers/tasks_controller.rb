@@ -9,6 +9,10 @@ class TasksController < ApplicationController
     @task = current_company.tasks.new
   end
 
+  def show
+    @line_item_dates = @task.line_item_dates.ordered
+  end
+
   def create
     @task = current_company.tasks.build(task_params)
 
