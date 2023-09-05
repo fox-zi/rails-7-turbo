@@ -10,21 +10,24 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = current_company.tasks.new(task_params)
+    @task = current_company.tasks.build(task_params)
 
     if @task.save
       respond_to do |format|
         format.html { redirect_to tasks_path, notice: "Task was successfully created." }
-        format.turbo_stream
+        format.turbo_stream { flash.now[:notice] = "Task was successfully created." }
       end
     else
-      render :new, status: :unprocessable_entity
+      render :new
     end
   end
 
   def update
     if @task.update(task_params)
-      redirect_to tasks_path, notice: 'Task was successfully updated.'
+      respond_to do |format|
+        format.html { redirect_to tasks_path, notice: "Task was successfully updated." }
+        format.turbo_stream { flash.now[:notice] = "Task was successfully updated." }
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -34,7 +37,7 @@ class TasksController < ApplicationController
     @task.destroy
     respond_to do |format|
       format.html { redirect_to tasks_path, notice: "Task was successfully destroyed." }
-      format.turbo_stream
+      format.turbo_stream { flash.now[:notice] = "Task was successfully destroyed." }
     end
   end
 

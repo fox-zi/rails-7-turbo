@@ -1,0 +1,3 @@
+.empty-state.empty-state--only-child
+  p.empty-state__text You don't have any tasks yet!
+  = link_to "Add task", new_task_path, class: "btn btn--primary", data: { turbo_frame: dom_id(Task.new) }
