@@ -1,0 +1,6 @@
+= turbo_frame_tag task do
+  .task
+    = link_to task.title, task_path(task), data: { turbo_frame: "_top" }
+    .quote__actions
+      = button_to "Delete", task_path(task), method: :delete, class: "btn btn--light", form: { data: { turbo_frame: "_top" } }
+      = link_to "Edit", edit_task_path(task), class: "btn btn--light"
