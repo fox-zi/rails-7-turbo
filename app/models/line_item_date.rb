@@ -5,7 +5,7 @@ class LineItemDate < ApplicationRecord
 
   scope :ordered, -> { order(date: :asc) }
 
-  has_many :line_items
+  has_many :line_items, dependent: :destroy
 
   def previous_date
     task.line_item_dates.ordered.where("date < ?", date).last

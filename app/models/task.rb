@@ -8,6 +8,11 @@ class Task < ApplicationRecord
   broadcasts_to ->(task) { [task.company, "tasks"] }, inserts_by: :prepend
 
   belongs_to :company
-  has_many :line_item_dates, dependent: :destroy
 
+  has_many :line_item_dates, dependent: :destroy
+  has_many :line_items, through: :line_item_dates
+
+  def total_price
+    line_items.sum(&:total_price)
+  end
 end

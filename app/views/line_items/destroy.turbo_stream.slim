@@ -1,2 +1,5 @@
 = turbo_stream.remove @line_item
+= turbo_stream.update dom_id(@task, :total) do
+  = render "tasks/total", task: @task
+
 = render_turbo_stream_flash_messages

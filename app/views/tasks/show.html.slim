@@ -1,4 +1,4 @@
-main.container
+main.container.mb-xxxxl
   = link_to sanitize("&larr; Back to tasks"), tasks_path
   .header
     h1 = @task.title
@@ -7,3 +7,5 @@ main.container
   = turbo_frame_tag LineItemDate.new
 
   = render "line_item_dates/list_frame"
+= turbo_frame_tag dom_id(@task, :total) do
+  = render "tasks/total", task: @task
