@@ -1,0 +1,10 @@
+main.container
+  = link_to sanitize("&larr; Back to task"), task_path(@task)
+  .header
+    h1 Edit item
+  = turbo_frame_tag @line_item do
+
+    = render "form",
+              task: @task,
+              line_item_date: @line_item_date,
+              line_item: @line_item

@@ -5,8 +5,4 @@ export default class extends Controller {
   remove() {
     this.element.remove()
   }
-
-  connect() {
-    alert("Removals")
-  }
 }

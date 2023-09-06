@@ -10,7 +10,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @line_item_dates = @task.line_item_dates.ordered
+    @line_item_dates = @task.line_item_dates.ordered.includes(:line_items).ordered
   end
 
   def create
