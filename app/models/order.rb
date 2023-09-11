@@ -1,8 +1,8 @@
 class Order < ApplicationRecord
-  TYPE = %i(buy sell swap)
+  TYPES = %i(buy sell swap)
 
-  enum type: TYPE
+  enum type: TYPES
 
-  belong_to :user
-  has_one :transaction
+  belongs_to :user
+  has_one :account_transaction
 end

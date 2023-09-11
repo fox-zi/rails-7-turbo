@@ -1,16 +1,26 @@
 class Account < ApplicationRecord
-  has_many :transactions
-  belong_to :user
+  belongs_to :user
+  has_many :account_transactions
+
+  def decreate(amount)
+    self.balance -= amount
+    save!
+  end
+
+  def increate(amount)
+    self.balance += amount
+    save!
+  end
 end
 
 
 # Sample: buy 0.0001 BTC by USDT, BTC price: 25k
 # - create order buy BTC
 
-# - create transaction buy BTC
+# - create account_transaction buy BTC
 # - increate account balance BTC
 
-# - create transaction buy BTC
+# - create account_transaction buy BTC
 # - decreate account balance USDT
 
 
@@ -18,10 +28,10 @@ end
 # Sample: buy 0.0001 BTC by USDT, BTC price: 25k
 # - create order buy BTC
 
-# - create transaction buy BTC
+# - create account_transaction buy BTC
 # - decreate account balance USDT
 
-# - create transaction buy BTC
+# - create account_transaction buy BTC
 # - increate account balance BTC
 
 
